@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Kategorija>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index Category</h1>
+
+
+@*<partial name="_Opozorilo" />*@
+@*UPORABA TEMP DATA
+    @if (TempData["success"] != null)
+    {
+        <h2>@TempData["success"]</h2>
+    }   *@
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Seznam kategorij</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Kategorija" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>   Ustvari kategorijo
+            </a>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Naziv
+            </th>
+            <th>
+                Vrstni red
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>
+                    @obj.naziv
+                </td>
+                <td>
+                    @obj.vrstniRed
+                </td>
+
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Kategorija" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary" style="width:75px"><i class="bi bi-pen-fill"></i> Popravi</a>
+                        <a asp-controller="Kategorija" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger" style="width:75px"><i class="bi bi-trash"></i> Izbriši</a>
+
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
